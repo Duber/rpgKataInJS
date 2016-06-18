@@ -12,33 +12,44 @@ function Character(customInitialHealth) {
 	};
 
 	var health = initialHealth(customInitialHealth);
+
+	var updateHealth = function(deltaPoints){
+		var resultantHealth = health + deltaPoints;
+		if (resultantHealth > MAX_HEALED_HEALTH){
+			return MAX_HEALED_HEALTH;
+		}
+		if (resultantHealth < MIN_HEALTH){
+			return MIN_HEALTH;
+		}
+		return resultantHealth;
+	}
+ 
 	
 	return {
    		attack: function(target, damage) {
+ 			var mySelf = this;
+   			if(mySelf == target) {
+   				return;
+   			}
    			target.receiveAttack(damage)
    		},
 		
 		health: health,
 		
 		receiveAttack: function(damage){
-			var resultantHealth = this.health - damage;
-			resultantHealth = (resultantHealth < MIN_HEALTH) ? MIN_HEALTH : resultantHealth;
-			this.health = resultantHealth;
+			this.health = updateHealth(damage * -1);
 		},
 
 		heal: function(healthPoints){
 			if (!this.alive()){
 				return;
-			} 
-			var resultantHealth = this.health + healthPoints;
-			resultantHealth = (resultantHealth > MAX_HEALED_HEALTH) ? MAX_HEALED_HEALTH : resultantHealth;
-			this.health = resultantHealth;
+			}													
+			this.health = updateHealth(healthPoints);
 		},
 
 		alive: function(){
 			return (this.health > MIN_HEALTH);
 		}
-
 	}
 }
 

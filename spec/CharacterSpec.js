@@ -34,6 +34,15 @@ describe("Character", function() {
         expect(target.alive()).toEqual(false);
         expect(target.health).toEqual(0);
     });
+
+    it("by himself doesn't recieve any damage", function(){
+        var character = new Character();
+        var characterInitialHealth = character.health;
+
+        character.attack(character);
+
+        expect(character.health).toEqual(characterInitialHealth)
+    })
   })
 
 
