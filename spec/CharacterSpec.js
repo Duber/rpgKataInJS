@@ -22,7 +22,7 @@ describe("A Character", function() {
     });
   });
 
-  describe("when attacked", function(){
+  describe("attacked", function(){
     it("receives damage", function(){
       var offender = new Character();
       var target = new Character();
@@ -52,10 +52,20 @@ describe("A Character", function() {
 
       expect(character.health).toEqual(characterInitialHealth)
     })
+
+    it("by a player 5 levels above, receives double damage", function(){
+      var offenderLevel = 6;
+      var offender = new Character(INITIAL_HEALTH, offenderLevel);
+      var target = new Character();
+      var damage = 500;
+
+      offender.attack(target, damage);
+
+      expect(target.alive()).toEqual(false);
+    });
   })
 
-
-  describe("when dead", function() {
+  describe("dead", function() {
     it("cannot be healed", function(){
       var customInitialHealth = 0;
       var character = new Character(customInitialHealth);
@@ -66,7 +76,7 @@ describe("A Character", function() {
     });
   });
 
-  describe("when healed", function(){
+  describe("healed", function(){
     it("recovers health", function(){
       var customInitialHealth = 800;
       var character = new Character(customInitialHealth);
@@ -77,7 +87,7 @@ describe("A Character", function() {
       expect(character.health).toEqual(customInitialHealth + healPoints);
     });
 
-    it("Cannot recover over 1000 points", function(){
+    it("cannot recover over 1000 points", function(){
       var customInitialHealth = 1000;
       var character = new Character(customInitialHealth);
       var healPoints = 100;
@@ -87,7 +97,5 @@ describe("A Character", function() {
       expect(character.health).toEqual(customInitialHealth);
     });
   });
-
-
 
 });
