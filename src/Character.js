@@ -1,5 +1,6 @@
-function Character(customInitialHealth) {
+function Character(customInitialHealth, customInitialLevel) {
 	var INITIAL_HEALTH = 1000;
+	var INITIAL_LEVEL = 1;
 	var MAX_HEALED_HEALTH = 1000;
 	var MIN_HEALTH = 0;
 
@@ -7,11 +8,19 @@ function Character(customInitialHealth) {
 		if (typeof customInitialHealth == 'undefined'){
 			return INITIAL_HEALTH
 		}
-
 		return customInitialHealth;
 	};
 
+	var initialLevel = function(customInitialLevel){
+		if(typeof customInitialLevel == 'undefined'){
+			return INITIAL_LEVEL;
+		}
+		return customInitialLevel;
+	}
+
 	var health = initialHealth(customInitialHealth);
+
+	var level = initialLevel(customInitialLevel);
 
 	var updateHealth = function(deltaPoints){
 		var resultantHealth = health + deltaPoints;
@@ -26,6 +35,10 @@ function Character(customInitialHealth) {
 
 
 	return {
+		health: health,
+
+		level: level,
+
 		attack: function(target, damage) {
 			var mySelf = this;
 			if(mySelf == target) {
@@ -33,8 +46,6 @@ function Character(customInitialHealth) {
 			}
 			target.receiveAttack(damage)
 		},
-
-		health: health,
 
 		receiveAttack: function(damage){
 			this.health = updateHealth(damage * -1);
