@@ -1,4 +1,5 @@
 describe("A Character", function() {
+  var INITIAL_HEALTH = 1000;
 
   it("dies if his health reaches zero", function(){
     var customInitialHealth = 0;
@@ -11,7 +12,7 @@ describe("A Character", function() {
     it("with 1000 health points", function(){
       var character = new Character();
 
-      expect(character.health).toEqual(1000);
+      expect(character.health).toEqual(INITIAL_HEALTH);
     });
 
     it("with level 1", function(){
@@ -29,7 +30,7 @@ describe("A Character", function() {
 
       offender.attack(target, damage);
 
-      expect(target.health).toEqual(1000 - damage);
+      expect(target.health).toEqual(INITIAL_HEALTH - damage);
     });
 
     it("dies if receives more damage than its current health", function(){
@@ -83,7 +84,7 @@ describe("A Character", function() {
 
       character.heal(healPoints);
 
-      expect(character.health).toEqual(1000);
+      expect(character.health).toEqual(customInitialHealth);
     });
   });
 
