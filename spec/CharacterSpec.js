@@ -13,6 +13,10 @@ describe("A Character", function() {
       expect(character.alive()).toEqual(false);
   });
 
+  it("can heal himself", function(){
+      
+  });
+
   describe("when attacked", function(){
     it("receives damage", function(){
         var offender = new Character();

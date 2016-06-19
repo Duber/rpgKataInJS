@@ -5,7 +5,7 @@ function Character(customInitialHealth) {
 
 	var initialHealth = function(customInitialHealth){
 		if (typeof customInitialHealth == 'undefined'){
-			return INITIAL_HEALTH 
+			return INITIAL_HEALTH
 		}
 
 		return customInitialHealth;
@@ -23,19 +23,19 @@ function Character(customInitialHealth) {
 		}
 		return resultantHealth;
 	}
- 
-	
+
+
 	return {
-   		attack: function(target, damage) {
- 			var mySelf = this;
-   			if(mySelf == target) {
-   				return;
-   			}
-   			target.receiveAttack(damage)
-   		},
-		
+		attack: function(target, damage) {
+			var mySelf = this;
+			if(mySelf == target) {
+				return;
+			}
+			target.receiveAttack(damage)
+		},
+
 		health: health,
-		
+
 		receiveAttack: function(damage){
 			this.health = updateHealth(damage * -1);
 		},
@@ -43,7 +43,7 @@ function Character(customInitialHealth) {
 		heal: function(healthPoints){
 			if (!this.alive()){
 				return;
-			}													
+			}
 			this.health = updateHealth(healthPoints);
 		},
 
@@ -52,4 +52,3 @@ function Character(customInitialHealth) {
 		}
 	}
 }
-
