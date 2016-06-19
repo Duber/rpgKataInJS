@@ -1,22 +1,24 @@
 describe("A Character", function() {
 
-  it("is born with 1000 health points", function(){
-    var character = new Character();
-
-    expect(character.health).toEqual(1000);
-  });
-
-  it("is born with level 1", function(){
-    var character = new Character();
-
-    expect(character.level).toEqual(1);
-  })
-
   it("dies if his health reaches zero", function(){
     var customInitialHealth = 0;
     var character = new Character(customInitialHealth);
 
     expect(character.alive()).toEqual(false);
+  });
+
+  describe("is born", function(){
+    it("with 1000 health points", function(){
+      var character = new Character();
+
+      expect(character.health).toEqual(1000);
+    });
+
+    it("with level 1", function(){
+      var character = new Character();
+
+      expect(character.level).toEqual(1)
+    });
   });
 
   describe("when attacked", function(){
