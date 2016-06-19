@@ -1,19 +1,19 @@
-describe("Character", function() {
+describe("A Character", function() {
 
-  it("Is born with 1000 health points", function(){
+  it("is born with 1000 health points", function(){
     var character = new Character();
 
     expect(character.health).toEqual(1000);
   });
 
-  it("Dies if health is zero", function(){
+  it("dies if his health reaches zero", function(){
       var customInitialHealth = 0;
       var character = new Character(customInitialHealth);
 
       expect(character.alive()).toEqual(false);
   });
 
-  describe("attacked", function(){
+  describe("when attacked", function(){
     it("receives damage", function(){
         var offender = new Character();
         var target = new Character();
@@ -35,7 +35,7 @@ describe("Character", function() {
         expect(target.health).toEqual(0);
     });
 
-    it("by himself doesn't recieve any damage", function(){
+    it("by himself doesn't receive any damage", function(){
         var character = new Character();
         var characterInitialHealth = character.health;
 
@@ -46,7 +46,7 @@ describe("Character", function() {
   })
 
 
-  describe("dead", function() {
+  describe("when dead", function() {
      it("cannot be healed", function(){
       var customInitialHealth = 0;
       var character = new Character(customInitialHealth);
@@ -57,7 +57,7 @@ describe("Character", function() {
     });
   });
 
-  describe("healed", function(){
+  describe("when healed", function(){
     it("recovers health", function(){
         var customInitialHealth = 800;
         var character = new Character(customInitialHealth);
