@@ -24,7 +24,7 @@ describe("A Character", function() {
         expect(target.health).toEqual(1000 - damage);
     });
 
-    it("dies if receives more damage than its health", function(){
+    it("dies if receives more damage than its current health", function(){
         var offender = new Character();
         var target = new Character();
         var damage = 1001;
