@@ -57,11 +57,23 @@ describe("A Character", function() {
       var offenderLevel = 6;
       var offender = new Character(INITIAL_HEALTH, offenderLevel);
       var target = new Character();
-      var damage = 500;
+      var damage = INITIAL_HEALTH / 2;
 
       offender.attack(target, damage);
 
       expect(target.alive()).toEqual(false);
+    });
+
+    it("by a player 5 levels below, receives half damage", function(){
+      var offender = new Character();
+      var targetLevel = 6;
+      var target = new Character(INITIAL_HEALTH, targetLevel);
+      var damage = 500;
+      var halfDamage = damage / 2;
+
+      offender.attack(target, damage);
+
+      expect(target.health).toEqual(INITIAL_HEALTH - halfDamage);
     });
   })
 

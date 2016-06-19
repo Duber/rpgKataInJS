@@ -33,6 +33,15 @@ function Character(customInitialHealth, customInitialLevel) {
 		return resultantHealth;
 	}
 
+	var calculateDamage = function(target, damage){
+		if (level - target.level >= 5){
+			return damage * 2;
+		}
+		if (target.level - level >= 5){
+			return damage / 2;
+		}
+		return damage;
+	}
 
 	return {
 		health: health,
@@ -44,9 +53,7 @@ function Character(customInitialHealth, customInitialLevel) {
 			if(mySelf == target) {
 				return;
 			}
-			if (mySelf.level - target.level >= 5){
-				damage = damage * 2;
-			}
+			damage = calculateDamage(target, damage);
 			target.receiveAttack(damage)
 		},
 
